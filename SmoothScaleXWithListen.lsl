@@ -18,7 +18,7 @@ integer  gListenHandle;
 // Helper: update debug text with pos, scale, and percent
 ShowMetrics()
 {
-    gPercent = (gCurrentSize.x / gMaxX) * 100.0;
+    gPercent = (gTargetSize.x / gMaxX) * 100.0;
     llSetText(
         "POS:" + (string)llGetPos() +
         " SCL:X=" + (string)gCurrentSize.x +
@@ -30,9 +30,8 @@ ShowMetrics()
 
 // Helper: apply scale and reposition so negative-X end stays fixed
 RepositionAndScale(float percent)
-{
-    
-    // 0) compute target
+{    
+    // compute target
     gTargetSize = <(gMaxX * percent), gBaseSize.y, gBaseSize.z>;
             
                 
@@ -60,6 +59,9 @@ default
 
         // compute anchor at negative-X end        
         gAnchorPos      = llGetPos();
+
+        // compute interval
+        
 
         // initial debug text
         ShowMetrics();
