@@ -41,7 +41,8 @@ RepositionAndScale()
 
     // 2) reposition so the negative-X anchor stays fixed
     vector axis       = llRot2Left(gRot);
-    vector halfNow    = <((gCurrentSize.x - gBaseSize.x) * 0.5 * gDirection),0,0>;
+    vector halfNow    = <((gCurrentSize.x - gBaseSize.x) * 0.5 * gDirection ),0,0>;        
+    
     llSetPos(gAnchorPos + halfNow);
 
     // 3) update debug metrics
@@ -95,21 +96,12 @@ default
         {
             llOwnerSay("Please send a numeric value 0–100.");
             return;
-        }
+        } 
         float pct = raw / 100.0;
 
         // compute target
         gTargetSize = <(gMaxX * pct), gBaseSize.y, gBaseSize.z>;
-        // determine direction using if/else (no ternary ops)
-        if (gTargetSize.x >= gCurrentSize.x)
-        {
-            gDirection = 1.0;
-        }
-        else
-        {
-            gDirection = -1.0;
-        }
-
+        
         // prepare animation
         gCount = 0;
         gStepX = (gDirection * llFabs(gTargetSize.x - gCurrentSize.x)) / (float)gSteps;
@@ -117,18 +109,9 @@ default
     }
 
     timer()
-    {
-        if (gCount < gSteps)
-        {
-            gCurrentSize.x += gStepX;
-            RepositionAndScale();
-            gCount++;
-        }
-        else
-        {
+    {                        
             llSetTimerEvent(0.0);
             gCurrentSize.x = gTargetSize.x;
-            RepositionAndScale();
-        }
+           RepositionAndScale();
     }
 }
