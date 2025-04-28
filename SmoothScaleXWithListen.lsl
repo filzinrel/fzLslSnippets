@@ -41,7 +41,7 @@ RepositionAndScale()
 
     // 2) reposition so the negative-X anchor stays fixed
     vector axis       = llRot2Left(gRot);
-    vector halfNow    = <((gCurrentSize.x - gBaseSize.x) * -0.5),0,0>;
+    vector halfNow    = <((gCurrentSize.x - gBaseSize.x) * 0.5 * gDirection),0,0>;
     llSetPos(gAnchorPos + halfNow);
 
     // 3) update debug metrics
