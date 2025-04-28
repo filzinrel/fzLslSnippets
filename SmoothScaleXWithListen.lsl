@@ -32,7 +32,7 @@ ShowMetrics()
 RepositionAndScale(float percent)
 {
     
-    // compute target
+    // 0) compute target
     gTargetSize = <(gMaxX * percent), gBaseSize.y, gBaseSize.z>;
             
                 
@@ -60,9 +60,6 @@ default
 
         // compute anchor at negative-X end        
         gAnchorPos      = llGetPos();
-
-        // compute interval
-        
 
         // initial debug text
         ShowMetrics();
